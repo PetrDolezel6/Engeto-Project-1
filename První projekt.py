@@ -59,3 +59,28 @@ else:
 
 
 #Vyber textu
+
+vyber = int(imput('Vyberte z textu 1 - 3'))
+print(oddelovac)
+
+vybrany_text = TEXTS[vyber - 1]
+print('Analyzuji:')
+print(vybrany_text)
+print(oddelovac)
+
+
+clean_text = vybrany_text.split()
+text = clean_text.strip('., ')
+
+
+
+#Analyza
+
+pocet_slov = len(text)
+
+titlecase = 0
+uppercase = 0
+lowercase = 0
+numeric = 0
+suma = 0
+
