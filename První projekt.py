@@ -1,5 +1,5 @@
 # muj prvni projekt
-print("Vitam vas u prvniho projektu")
+print("Vitej u prvniho projektu")
 
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer, 
@@ -11,7 +11,7 @@ above sea level. The butte is located just
 north of US 30N and the Union Pacific Railroad, 
 which traverse the valley. ''',
 
-'''At the base of Fossil Butte are the bright 
+         '''At the base of Fossil Butte are the bright 
 red, purple, yellow and gray beds of the Wasatch 
 Formation. Eroded portions of these horizontal 
 beds slope gradually upward from the valley floor 
@@ -20,7 +20,7 @@ to the top of the butte are the much steeper
 buff-to-white beds of the Green River Formation, 
 which are about 300 feet thick.''',
 
-'''The monument contains 8198 acres and protects 
+         '''The monument contains 8198 acres and protects 
 a portion of the largest deposit of freshwater fish 
 fossils in the world. The richest fossil fish deposits 
 are found in multiple limestone layers, which lie some 
@@ -29,10 +29,9 @@ represent several varieties of perch, as well as
 other freshwater genera and herring similar to those 
 in modern oceans. Other fish such as paddlefish, 
 garpike and stingray are also present.'''
-]
+         ]
 
-
-#Vytvoreni uzivatelu a overeni pristupu
+# Vytvoreni uzivatelu a overeni pristupu
 
 users = {}
 oddelovac = "-" * 40
@@ -47,7 +46,7 @@ users['liz'] = 'pass123'
 print('Vitej v aplikaci na analyzu textu. Prihlas se.')
 
 username = input('Uzivatelske jmeno')
-password = input(Heslo)
+password = input('Heslo')
 
 if users.get(username) == password:
     print('Jsi prihlaseny')
@@ -57,10 +56,9 @@ else:
     print('Pokracujes jako neregistrovany uzivatel')
     print(oddelovac)
 
+# Vyber a uprava twxtu
 
-#Vyber textu
-
-vyber = int(imput('Vyberte z textu 1 - 3'))
+vyber = int(input('Vyber z textu 1 - 3'))
 print(oddelovac)
 
 vybrany_text = TEXTS[vyber - 1]
@@ -68,19 +66,61 @@ print('Analyzuji:')
 print(vybrany_text)
 print(oddelovac)
 
+text = []
+for slovo in vybrany_text.split():
+    slovo = slovo.strip('.,')
+    text.append(slovo)
+print(oddelovac)
 
-clean_text = vybrany_text.split()
-text = clean_text.strip('., ')
+# Analyza
 
-
-
-#Analyza
-
-pocet_slov = len(text)
+pocet_slov = str(len(text))
 
 titlecase = 0
 uppercase = 0
 lowercase = 0
-numeric = 0
+numbers = 0
+pocet = {}
 suma = 0
+i = 0
 
+while i < len(text):
+
+    if text[i].istitle():
+        titlecase += 1
+    elif text[i].isupper():
+        uppercase += 1
+    elif text[i].islower():
+        lowercase += 1
+    elif text[i].isnumeric():
+        numbers += 1
+        suma = suma + float(text[i])
+
+    l = len(text[i])
+    pocet[l] = pocet.get(1, 0) + 1
+
+    i += 1
+
+print(f"V textu je:", pocet_slov, "slov")
+print(f"V textu je:", titlecase, " slov zacinajicich velkym pismenem")
+print(f"V textu je:", uppercase, "slov psanych velkym ppismem")
+print(f"V textu je::", lowercase, "slov psanych malym pismem")
+print(f"V textu je:", numbers, "cisel")
+print(oddelovac)
+
+# Graf
+
+length = []
+for slovo in text:
+    length.append(len(slovo))
+length.sort()
+
+for stars in set(length):
+    print(stars, "*" * length.count(stars), length.count(stars))
+
+print(oddelovac)
+
+# Soucet cisel v clanku
+
+print("Soucet vsech cisel v textu je:" + str(suma))
+print(oddelovac)
