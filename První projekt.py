@@ -31,6 +31,7 @@ in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
          ]
 
+
 # Vytvoreni uzivatelu a overeni pristupu
 
 users = {}
@@ -56,6 +57,7 @@ else:
     print('Pokracujes jako neregistrovany uzivatel')
     print(oddelovac)
 
+
 # Vyber a uprava twxtu
 
 vyber = int(input('Vyber z textu 1 - 3'))
@@ -71,6 +73,7 @@ for slovo in vybrany_text.split():
     slovo = slovo.strip('.,')
     text.append(slovo)
 print(oddelovac)
+
 
 # Analyza
 
@@ -108,6 +111,7 @@ print(f"V textu je::", lowercase, "slov psanych malym pismem")
 print(f"V textu je:", numbers, "cisel")
 print(oddelovac)
 
+
 # Graf
 
 length = []
@@ -119,6 +123,7 @@ for stars in set(length):
     print(stars, "*" * length.count(stars), length.count(stars))
 
 print(oddelovac)
+
 
 # Soucet cisel v clanku
 
